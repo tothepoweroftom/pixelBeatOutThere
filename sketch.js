@@ -35,6 +35,7 @@ var margin = 30
 
 
 
+
 var notes = ["A.1", "A.2", "A.3", "A.4", "A.5", "A.6",
   "B.1", "B.2", "B.3", "B.4", "B.5", "B.6",
   "C.1", "C.2", "C.3", "C.4", "C.5", "C.6",
@@ -407,14 +408,14 @@ function updateAngles(){
         } else {
           rects[index].ring1 = false;
         }
-      }/* else if(min2>max2){
+      } else if(min2>max2){
         if(rects[index].theta <= min1 && rects[index].theta >= max1){
           rects[index].ring1 = true;
         //  console.log(rects[index].isOn);
         } else {
           rects[index].ring1 = false;
         }
-      }*/
+      }
     }
     }
 }
@@ -441,14 +442,14 @@ sampler2.volume.value = map(diff2, 0, 360, -20, 3);
       } else {
         rects[index].ring2 = false;
       }
-    } /*else if(min2>max2){
+    } else if(min2>max2){
       if(rects[index].theta <= min2 && rects[index].theta >= max2){
         rects[index].ring2 = true;
       //  console.log(rects[index].isOn);
       } else {
         rects[index].ring2 = false;
       }
-    }*/
+    }
   }
   }
 
@@ -474,18 +475,18 @@ if(points[4] && points[5]){
       if(max3>min3){
       if(rects[index].theta <= max3 && rects[index].theta >= min3){
         rects[index].ring3 = true;
-      //  console.log(rects[index].isOn);
+      //  console.log("ring3 " + rects[index].ring3);
       } else {
         rects[index].ring3 = false;
       }
-    } /*else if(min3>max3){
+    } else if(min3>max3){
       if(rects[index].theta <= min3 && rects[index].theta >= max3){
         rects[index].ring3 = true;
       //  console.log(rects[index].isOn);
       } else {
         rects[index].ring3 = false;
       }
-    }*/
+    }
   }
   }
 

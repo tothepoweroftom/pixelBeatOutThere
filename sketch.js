@@ -281,6 +281,9 @@ function preload() {
     sampler.envelope.attack = 0.5;
     sampler2.envelope.attack = 0.4;
     sampler3.envelope.attack = 0.1;
+    sampler.envelope.release = 0.2;
+    sampler2.envelope.release = 0.1;
+    sampler3.envelope.release = 0.1;
 }
 
 

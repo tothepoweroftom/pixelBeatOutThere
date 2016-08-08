@@ -30,13 +30,20 @@ var origin = new Point(space.size.$divide(2) );
 
 
 form.stroke( false );
+var fonts = ["Helvetica, sans-serif", "Georgia", "monospace"];
+var scale = 20;
 
 //// 3. Visualize, Animate, Interact
 space.add({
   animate: function(time, fps, context) {
 
+    form.fill( "#eeeeee" );
+    form.font( scale, fonts[3]);
+    form.text( new Point(20, space.size.y/8), "Music From The Atom" );
+    form.text( new Point(20, space.size.y/8 + 30), "by Wild Surmise" );
+
     // draw circle and donut. Donut follows mouse position.
-    form.fill( colors.a4 );
+    form.fill( "rgba(0,0,0,0)" );
     form.circle( mouse, mouse.radius, true );
 
 

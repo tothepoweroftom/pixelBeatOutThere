@@ -26,7 +26,7 @@ var circle2 = new Circle( space.size.$divide(2) ).setRadius( 275 );
 var circle3 = new Circle( space.size.$divide(2) ).setRadius( 350 );
 
 
-var origin = new Point(0,space.size.y/2);
+var origin = new Point(space.size.$divide(2) );
 
 
 form.stroke( false );

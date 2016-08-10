@@ -84,8 +84,6 @@ function Rectangle(_x, _y, _width, _height, _sample, _note) {
 var pingPong = new Tone.PingPongDelay("2n", 0.3).toMaster();
 pingPong.wet.value = 0.2;
 
-var freeverb = new Tone.Freeverb();
-freeverb.dampening.value = 100;
 
 
 
@@ -106,16 +104,27 @@ function preload() {
 
         },
         B: {
-            1: "./audio/cello/cello1.wav",
-            2: "./audio/cello/cello2.wav",
-            3: "./audio/cello/cello3.wav",
-            4: "./audio/cello/cello4.wav",
-            5: "./audio/cello/cello5.wav",
-            6: "./audio/cello/cello6.wav",
+            1: "./audio/piano/piano1.wav",
+            2: "./audio/piano/piano2.wav",
+            3: "./audio/piano/piano3.wav",
+            4: "./audio/piano/piano4.wav",
+            5: "./audio/piano/piano5.wav",
+            6: "./audio/piano/piano6.wav",
 
 
 
         },
+        // B: {
+        //     1: "./audio/cello/cello1.wav",
+        //     2: "./audio/cello/cello2.wav",
+        //     3: "./audio/cello/cello3.wav",
+        //     4: "./audio/cello/cello4.wav",
+        //     5: "./audio/cello/cello5.wav",
+        //     6: "./audio/cello/cello6.wav",
+
+
+
+        //},
         C: {
             1: "./audio/hang/hang1.wav",
             2: "./audio/hang/hang2.wav",
@@ -138,7 +147,7 @@ function preload() {
 
 
         }
-    }).chain(pingPong, freeverb);
+    }).connect(pingPong);
 
     //ELECTRONIC SAMPLER
     sampler2 = new Tone.Sampler({
@@ -197,7 +206,7 @@ function preload() {
 
 
         }
-    }).chain(pingPong, freeverb);
+    }).connect(pingPong);
 
 
     // sampler.reverse = true;
@@ -271,19 +280,19 @@ function preload() {
 
 
         // }
-    }).chain(pingPong, freeverb);
+    }).connect(pingPong);
 
     //TURN DOWN THE VOLUME
     sampler.volume.value = -10;
-    sampler2.volume.value = -10;
+    sampler2.volume.value = -15;
     sampler3.volume.value = -10;
 
     sampler.envelope.attack = 0.5;
     sampler2.envelope.attack = 0.4;
     sampler3.envelope.attack = 0.1;
-    sampler.envelope.release = 0.2;
-    sampler2.envelope.release = 0.1;
-    sampler3.envelope.release = 0.1;
+    // sampler.envelope.release = 0.2;
+    // sampler2.envelope.release = 0.1;
+    // sampler3.envelope.release = 0.1;
 }
 
 
@@ -298,8 +307,8 @@ function setup() {
 
 
     // specify multiple formats for different browsers
-    video = createVideo(['assets/cloud25forweb.mp4']);
-    vidDisplay = createVideo(['assets/cloud25.mp4']);
+    video = createVideo(['assets/subtractedFootageForWeb.mp4']);
+    vidDisplay = createVideo(['assets/FullWebFootage.mp4']);
     vidDisplay.id("vidDisplay");
     video.loop();
     vidDisplay.loop();
@@ -314,7 +323,7 @@ function setup() {
     pixelDensity(1);
     noStroke();
     fill(0);
-    frameRate(2);
+    frameRate(1);
 
     for (var y = 0; y < video.height; y++) {
         for (var x = 0; x < video.width; x++) {
@@ -364,6 +373,9 @@ function draw() {
             }
 
 
+
+          //  rects[index/4].display();
+
         }
     }
 
@@ -391,6 +403,9 @@ function updateAngles() {
         var min = points[0].angle(spaceSize) * 180 / PI + 180;
         var max = points[1].angle(spaceSize) * 180 / PI + 180;
 
+        var diff = abs(max-min);
+        console.log("diff= " + diff);
+        sampler.volume.value = map(diff, 0,360, -20, -5);
 
 
         for (var y = 0; y < 8; y++) {
@@ -416,6 +431,7 @@ function updateAngles() {
 
 
         var diff2 = abs(max2 - min2);
+        sampler2.volume.value = map(diff2, 0,360, -20, -5);
 
         for (var y = 0; y < 8; y++) {
             for (var x = 0; x < 12; x++) {
@@ -437,6 +453,9 @@ function updateAngles() {
         //console.log("Theta Min = " + points[0].angle(spaceSize)*180/PI + " Theta Max = " + points[1].angle(spaceSize)*180/PI);
         var min3 = points[4].angle(spaceSize) * 180 / PI + 180;
         var max3 = points[5].angle(spaceSize) * 180 / PI + 180;
+
+        var diff3 = abs(max3 - min3);
+        sampler3.volume.value = map(diff3, 0,360, -20, -5);
 
 
 

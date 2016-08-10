@@ -4,6 +4,8 @@
 var points = [];
 var spaceSize;
 
+//var ringTrigger = false;
+
 (function() {
 
 //// 1. Define Space and Form
@@ -17,9 +19,9 @@ var form = new Form( space );
 spaceSize = space.size.$divide(2);
 
 //// 2. Create Elements
-var mouse = new Circle( space.size.$divide(2) ).setRadius(  300 );
-var mouse2 = new Circle( space.size.$divide(2) ).setRadius( 205 );
-var mouse3 = new Circle( space.size.$divide(2) ).setRadius( 190 );
+var mouse = new Circle( space.size.$divide(2) ).setRadius(  400 );
+var mouse2 = new Circle( space.size.$divide(2) ).setRadius( 305 );
+var mouse3 = new Circle( space.size.$divide(2) ).setRadius( 290 );
 
 var circle = new Circle( space.size.$divide(2) ).setRadius( 200 );
 var circle2 = new Circle( space.size.$divide(2) ).setRadius( 275 );
@@ -43,16 +45,21 @@ space.add({
     form.text( new Point(20, space.size.y/8 + 30), "by Wild Surmise" );
 
     // draw circle and donut. Donut follows mouse position.
-    form.fill( "rgba(0,0,0,0)" );
+    form.fill( "rgba(0,0,0,.51)" );
     form.circle( mouse, mouse.radius, true );
+    form.fill( "rgba(255,0,0,.51)" );
+    form.circle( mouse2, mouse2.radius, true );
+    form.fill( "rgba(0,0,255,.51)" );
+    form.circle( mouse2, mouse3.radius, true );
 
 
-    // //
-    // form.fill( "rgba(255,0,0,0.09)" );
-    // form.circle( circle, circle.radius, true );
-    // form.fill( "rgba(0,255,0,0.19)" );
-    // form.circle( circle2, circle2.radius, true );
-    // form.circle( circle3, circle2.radius, true );
+    //
+    form.fill( "rgba(0,0,0,0.39)" );
+    form.circle( circle, circle.radius, true );
+    form.fill( "rgba(0,,0,0.19)" );
+    form.circle( circle2, circle2.radius, true );
+        form.fill( "rgba(0,2,5,0.19)" );
+    form.circle( circle3, circle2.radius, true );
 
 
     // Check intersections and draw the intersection points
@@ -68,8 +75,11 @@ space.add({
     points[5] = ps3[1];
 
     if(points[0] && points[1]){
-    form.stroke("#17BEBB", 80,"round");
-    form.arc(circle, points[0].angle(space.size.$divide(2)), points[1].angle(space.size.$divide(2)) );
+
+      form.stroke("#17BEBB", 80,"round");
+
+    }
+      form.arc(circle, points[0].angle(space.size.$divide(2)), points[1].angle(space.size.$divide(2)) );
     }
     if(points[2] && points[3]){
     form.stroke("#B0DB43", 80,"round");
@@ -82,24 +92,24 @@ space.add({
   }
     form.stroke("rgba(0,0,0,.5)", 0.1,"bevel");
 
-  //  form.fill( colors.a1 );
+   form.fill( colors.a1 );
   //  for (var i=0; i<ps.length; i++) {
   //    form.point( ps[i], 10, true);
-
-
+  //
+  //
   //  }
-
+  //
   //  form.fill( "#fff" );
   //  for (i=0; i<ps2.length; i++) { form.point( ps2[i], 15, true); }
-    //form.fill( colors.b1 );
-
-    //for (i=0; i<ps3.length; i++) { form.point( ps3[i], 20, true); }
-
-
-
-
-
-  },
+  //   form.fill( colors.b1 );
+  //
+  //   for (i=0; i<ps3.length; i++) { form.point( ps3[i], 20, true); }
+  //
+  //
+  //
+  //
+  //
+   },
   onMouseAction: function(type, x, y, evt) {
     if (type=="move") {
       mouse.set(x,y);
@@ -115,6 +125,8 @@ space.add({
           //  console.log(pnt1.angle(space.size.$divide(2))*180/PI);
 
       //console.log(one[1]);
+
+
 
     }
   }

@@ -3,17 +3,18 @@
 //0,1 Ring 1 - 2,3 Ring 2 - 4,5 Ring 3
 var points = [];
 var spaceSize;
+var space = new CanvasSpace("pt").setup( {bgcolor: "#000000"} );
 
 //var ringTrigger = false;
 
-(function() {
+
 
 //// 1. Define Space and Form
 var colors = {
   a1: "#ff2d5d", a2: "#42dc8e", a3: "#2e43eb", a4: "#000000",
   b1: "#96bfed", b2: "#f5ead6", b3: "#f1f3f7", b4: "#e2e6ef"
 };
-var space = new CanvasSpace("pt").setup( {bgcolor: colors.a4} );
+//var space = new CanvasSpace("pt").setup( {bgcolor: colors.a4} );
 var form = new Form( space );
 
 spaceSize = space.size.$divide(2);
@@ -47,9 +48,9 @@ space.add({
     // draw circle and donut. Donut follows mouse position.
     form.fill( "rgba(0,0,0,.51)" );
     form.circle( mouse, mouse.radius, true );
-    form.fill( "rgba(255,0,0,.51)" );
+    form.fill( "rgba(0,0,0,.51)" );
     form.circle( mouse2, mouse2.radius, true );
-    form.fill( "rgba(0,0,255,.51)" );
+    form.fill( "rgba(0,0,0,.51)" );
     form.circle( mouse2, mouse3.radius, true );
 
 
@@ -78,9 +79,8 @@ space.add({
 
       form.stroke("#17BEBB", 80,"round");
 
-    }
       form.arc(circle, points[0].angle(space.size.$divide(2)), points[1].angle(space.size.$divide(2)) );
-    }
+}
     if(points[2] && points[3]){
     form.stroke("#B0DB43", 80,"round");
     form.arc(circle2, points[2].angle(space.size.$divide(2)), points[3].angle(space.size.$divide(2)) );
@@ -93,22 +93,7 @@ space.add({
     form.stroke("rgba(0,0,0,.5)", 0.1,"bevel");
 
    form.fill( colors.a1 );
-  //  for (var i=0; i<ps.length; i++) {
-  //    form.point( ps[i], 10, true);
-  //
-  //
-  //  }
-  //
-  //  form.fill( "#fff" );
-  //  for (i=0; i<ps2.length; i++) { form.point( ps2[i], 15, true); }
-  //   form.fill( colors.b1 );
-  //
-  //   for (i=0; i<ps3.length; i++) { form.point( ps3[i], 20, true); }
-  //
-  //
-  //
-  //
-  //
+
    },
   onMouseAction: function(type, x, y, evt) {
     if (type=="move") {
@@ -116,15 +101,6 @@ space.add({
       mouse2.set(x,y);
       mouse3.set(x,y);
 
-      // // //    pingPong.wet.value = map(data.y, 0, 1, 0, 1);
-      //     pingPong.wet.value = map(x, 100, windowWidth-100, 0.2, 1);
-      //     pingPong.feedback.value = map(y, 100, windowHeight, 0.2, 0.89);
-
-
-
-          //  console.log(pnt1.angle(space.size.$divide(2))*180/PI);
-
-      //console.log(one[1]);
 
 
 
@@ -133,8 +109,53 @@ space.add({
 });
 
 
+// A Dust is a kind of Vector
+function Dust() {
+  Vector.apply( this, arguments ); // call Vector's constructor
+  this.age = 0;
+  this.maxAge = Math.random() * 500 + 5;
+  this.weight =  2 + Math.random()*3;
+  this.color = (this.weight > 0.7) ? colors["a"+Math.ceil(Math.random()*4)] : "#000";
+}
+Util.extend( Dust, Vector ); // extends Vector class
+
+
+// define an animate function so it can be animated when added into Space
+Dust.prototype.animate = function(time, fps, context) {
+
+  // drift movement
+  this.add( rand(1), (Math.random() - Math.random()*(1-this.weight/1.5)) );
+
+  // remove when done
+  if (this.age++ > this.maxAge) space.remove(this);
+
+  // glitter
+  var gray = (this.maxAge-this.age)/this.maxAge * 0.4;
+  gray = Math.max(0, Math.min( 0.6, (Math.random() > 0.5) ? gray + 0.05 : gray - 0.05 ) );
+
+  // draw dust
+  form.fill( Util.toRGBColor( this.color, true, gray ) );
+  form.point( this, this.weight, true );
+
+};
+
+// a helper function for randomness
+function rand(r) { return Math.random() * r - Math.random() * r; }
+
+
+//// 3. Visualize, Animate, Interact
+
+// When mouse moved, add dust into space
+// space.bindCanvas("triggerAttack", function(evt) {
+//
+//   // add two Dust into space
+//   space.add( new Dust( evt.offsetX+rand(5), evt.offsetY+rand(5) ) );
+//   space.add( new Dust( evt.offsetX+rand(5), evt.offsetY+rand(5) ) );
+//
+// });
+
+
 
 // 4. Start playing
 space.bindMouse();
 space.play();
-})();

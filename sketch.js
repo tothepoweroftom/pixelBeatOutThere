@@ -362,6 +362,11 @@ function draw() {
             if (bright > 220 && rects[index / 4].ring1 === true) {
 
                 sampler.triggerAttack(rects[index / 4].sample);
+
+
+
+
+
             }
             if (bright > 220 && rects[index / 4].ring2 === true) {
 
@@ -370,6 +375,11 @@ function draw() {
             if (bright > 220 && rects[index / 4].ring3 === true) {
 
                 sampler3.triggerAttack(rects[index / 4].sample);
+            }
+            if (bright > 150) {
+              space.add( new Dust(x*(windowWidth/video.width) + rand(10), y*(windowHeight/video.height)+rand(10) ) );
+              space.add( new Dust(x*(windowWidth/video.width) + rand(10), y*(windowHeight/video.height)+rand(10) ) );
+
             }
 
 

@@ -377,10 +377,10 @@ function draw() {
                 sampler3.triggerAttack(rects[index / 4].sample);
             }
             if (bright > 150) {
-              space.add( new Dust(x*(windowWidth/video.width) + rand(10), y*(windowHeight/video.height)+rand(10) ) );
-              space.add( new Dust(x*(windowWidth/video.width) + rand(100), y*(windowHeight/video.height)+rand(10) ) );
-              space.add( new Dust(x*(windowWidth/video.width) + rand(50), y*(windowHeight/video.height)+rand(10) ) );
-              space.add( new Dust(x*(windowWidth/video.width) + rand(40), y*(windowHeight/video.height)+rand(10) ) );
+              space.add( new Dust(x*(windowWidth/video.width) + rand(10), 100+y*(windowHeight/video.height)+rand(10) ) );
+              space.add( new Dust(x*(windowWidth/video.width) + rand(100), 50+y*(windowHeight/video.height)+rand(10) ) );
+              space.add( new Dust(x*(windowWidth/video.width) + rand(50), 100+y*(windowHeight/video.height)+rand(10) ) );
+              space.add( new Dust(x*(windowWidth/video.width) + rand(40), 10+y*(windowHeight/video.height)+rand(10) ) );
             }
 
 

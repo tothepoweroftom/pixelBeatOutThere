@@ -285,7 +285,11 @@ function preload() {
     // sampler3.envelope.release = 0.1;
 }
 
-
+function init() {
+  var elt = document.getElementById('loader-wrapper');
+  elt.style.display = 'none';
+}
+window.addEventListener('load', init);
 
 function setup() {
 

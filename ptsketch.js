@@ -114,7 +114,7 @@ function Dust() {
   Vector.apply( this, arguments ); // call Vector's constructor
   this.age = 0;
   this.maxAge = Math.random() * 500 + 5;
-  this.weight =  2 + Math.random()*3;
+  this.weight =  5 + Math.random()*3;
   this.color = (this.weight > 0.7) ? colors["a"+Math.ceil(Math.random()*4)] : "#000";
 }
 Util.extend( Dust, Vector ); // extends Vector class

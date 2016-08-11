@@ -82,7 +82,7 @@ function Rectangle(_x, _y, _width, _height, _sample, _note) {
 
 //TONE.JS EFFECTS
 var pingPong = new Tone.PingPongDelay("2n", 0.3).toMaster();
-pingPong.wet.value = 0.2;
+pingPong.wet.value = 0.4;
 
 
 
@@ -103,28 +103,18 @@ function preload() {
 
 
         },
+
         B: {
-            1: "./audio/piano/piano1.wav",
-            2: "./audio/piano/piano2.wav",
-            3: "./audio/piano/piano3.wav",
-            4: "./audio/piano/piano4.wav",
-            5: "./audio/piano/piano5.wav",
-            6: "./audio/piano/piano6.wav",
+            1: "./audio/cello/cello1.wav",
+            2: "./audio/cello/cello2.wav",
+            3: "./audio/cello/cello3.wav",
+            4: "./audio/cello/cello4.wav",
+            5: "./audio/cello/cello5.wav",
+            6: "./audio/cello/cello6.wav",
 
 
 
         },
-        // B: {
-        //     1: "./audio/cello/cello1.wav",
-        //     2: "./audio/cello/cello2.wav",
-        //     3: "./audio/cello/cello3.wav",
-        //     4: "./audio/cello/cello4.wav",
-        //     5: "./audio/cello/cello5.wav",
-        //     6: "./audio/cello/cello6.wav",
-
-
-
-        //},
         C: {
             1: "./audio/hang/hang1.wav",
             2: "./audio/hang/hang2.wav",
@@ -287,9 +277,9 @@ function preload() {
     sampler2.volume.value = -15;
     sampler3.volume.value = -10;
 
-    sampler.envelope.attack = 0.5;
-    sampler2.envelope.attack = 0.4;
-    sampler3.envelope.attack = 0.1;
+    sampler.envelope.attack = 0.8;
+    sampler2.envelope.attack = 0.8;
+    sampler3.envelope.attack = 0.8;
     // sampler.envelope.release = 0.2;
     // sampler2.envelope.release = 0.1;
     // sampler3.envelope.release = 0.1;
@@ -307,8 +297,10 @@ function setup() {
 
 
     // specify multiple formats for different browsers
-    video = createVideo(['assets/subtractedFootageForWeb.mp4']);
-    vidDisplay = createVideo(['assets/FullWebFootage.mp4']);
+    // video = createVideo(['assets/subtractedFootageForWeb.mp4']);
+    // vidDisplay = createVideo(['assets/FullWebFootage.mp4']);
+    video = createVideo(['assets/cloud25forweb.mp4']);
+    vidDisplay = createVideo(['assets/cloud25.mp4']);
     vidDisplay.id("vidDisplay");
     video.loop();
     vidDisplay.loop();
@@ -323,7 +315,7 @@ function setup() {
     pixelDensity(1);
     noStroke();
     fill(0);
-    frameRate(1);
+    frameRate(2);
 
     for (var y = 0; y < video.height; y++) {
         for (var x = 0; x < video.width; x++) {
@@ -359,7 +351,7 @@ function draw() {
 
             var bright = (r + g + b) / 3;
 
-            if (bright > 220 && rects[index / 4].ring1 === true) {
+            if (bright > 200 && rects[index / 4].ring1 === true) {
 
                 sampler.triggerAttack(rects[index / 4].sample);
 
@@ -368,13 +360,15 @@ function draw() {
 
 
             }
-            if (bright > 220 && rects[index / 4].ring2 === true) {
+            if (bright > 200 && rects[index / 4].ring2 === true) {
 
                 sampler2.triggerAttack(rects[index / 4].sample);
+
             }
-            if (bright > 220 && rects[index / 4].ring3 === true) {
+            if (bright > 200 && rects[index / 4].ring3 === true) {
 
                 sampler3.triggerAttack(rects[index / 4].sample);
+
             }
             if (bright > 150) {
               space.add( new Dust(x*(windowWidth/video.width) + rand(10), 100+y*(windowHeight/video.height)+rand(10) ) );
@@ -413,10 +407,10 @@ function updateAngles() {
     if (points[0] && points[1]) {
         var min = points[0].angle(spaceSize) * 180 / PI + 180;
         var max = points[1].angle(spaceSize) * 180 / PI + 180;
-
-        var diff = abs(max-min);
-        console.log("diff= " + diff);
-        sampler.volume.value = map(diff, 0,360, -20, -5);
+        //
+        // var diff = abs(max-min);
+        // console.log("diff= " + diff);
+        // sampler.volume.value = map(diff, 0,360, -20, -5);
 
 
         for (var y = 0; y < 8; y++) {
@@ -433,16 +427,24 @@ function updateAngles() {
 
             }
         }
-    }
+    } else {
+      for (var y = 0; y < 8; y++) {
+          for (var x = 0; x < 12; x++) {
+              var index = (x + (y * 12));
+                      rects[index].ring1 = false;
+                  }
+              }
+
+          }
 
 
     if (points[2] && points[3]) {
         var min2 = points[2].angle(spaceSize) * 180 / PI + 180;
         var max2 = points[3].angle(spaceSize) * 180 / PI + 180;
-
-
-        var diff2 = abs(max2 - min2);
-        sampler2.volume.value = map(diff2, 0,360, -20, -5);
+        //
+        //
+        // var diff2 = abs(max2 - min2);
+        // sampler2.volume.value = map(diff2, 0,360, -20, -5);
 
         for (var y = 0; y < 8; y++) {
             for (var x = 0; x < 12; x++) {
@@ -459,14 +461,23 @@ function updateAngles() {
         }
 
 
-    }
+    } else {
+      for (var y = 0; y < 8; y++) {
+          for (var x = 0; x < 12; x++) {
+              var index = (x + (y * 12));
+                      rects[index].ring2 = false;
+                  }
+              }
+
+          }
+
     if (points[4] && points[5]) {
         //console.log("Theta Min = " + points[0].angle(spaceSize)*180/PI + " Theta Max = " + points[1].angle(spaceSize)*180/PI);
         var min3 = points[4].angle(spaceSize) * 180 / PI + 180;
         var max3 = points[5].angle(spaceSize) * 180 / PI + 180;
 
-        var diff3 = abs(max3 - min3);
-        sampler3.volume.value = map(diff3, 0,360, -20, -5);
+        // var diff3 = abs(max3 - min3);
+        // sampler3.volume.value = map(diff3, 0,360, -20, -5);
 
 
 
@@ -485,7 +496,16 @@ function updateAngles() {
         }
 
 
-    }
+    } else {
+      for (var y = 0; y < 8; y++) {
+          for (var x = 0; x < 12; x++) {
+              var index = (x + (y * 12));
+                      rects[index].ring3 = false;
+                  }
+              }
+
+          }
+
 
 
 

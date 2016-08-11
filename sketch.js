@@ -292,7 +292,7 @@ function init() {
 window.addEventListener('load', init);
 
 function setup() {
-
+  elt.style.display = 'none';
     canvas = createCanvas(480, 320);
     canvas.position(windowWidth / 2 - canvas.width / 2, 0);
 
@@ -305,6 +305,8 @@ function setup() {
     // vidDisplay = createVideo(['assets/FullWebFootage.mp4']);
     video = createVideo(['assets/cloud25forweb.mp4']);
     vidDisplay = createVideo(['assets/cloud25.mp4']);
+    var elt = document.getElementById('loader-wrapper');
+    elt.style.display = 'none';
     vidDisplay.id("vidDisplay");
     video.loop();
     vidDisplay.loop();

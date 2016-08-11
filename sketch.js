@@ -292,7 +292,6 @@ function preload() {
 // window.addEventListener('load', init);
 
 function setup() {
-  elt.style.display = 'none';
     canvas = createCanvas(480, 320);
     canvas.position(windowWidth / 2 - canvas.width / 2, 0);
 

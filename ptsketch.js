@@ -5,6 +5,10 @@ var points = [];
 var spaceSize;
 var space = new CanvasSpace("pt").setup( {bgcolor: "#000000"} );
 
+var arcToggle1 = false;
+var arcToggle2 = false;
+var arcToggle3 = true;
+
 //var ringTrigger = false;
 
 
@@ -20,9 +24,9 @@ var form = new Form( space );
 spaceSize = space.size.$divide(2);
 
 //// 2. Create Elements
-var mouse = new Circle( space.size.$divide(2) ).setRadius(  400 );
-var mouse2 = new Circle( space.size.$divide(2) ).setRadius( 305 );
-var mouse3 = new Circle( space.size.$divide(2) ).setRadius( 290 );
+var mouse = new Circle( space.size.$divide(2) ).setRadius(  300 );
+var mouse2 = new Circle( space.size.$divide(2) ).setRadius( 205 );
+var mouse3 = new Circle( space.size.$divide(2) ).setRadius( 190 );
 
 var circle = new Circle( space.size.$divide(2) ).setRadius( 200 );
 var circle2 = new Circle( space.size.$divide(2) ).setRadius( 250 );
@@ -75,17 +79,17 @@ space.add({
     points[4] = ps3[0];
     points[5] = ps3[1];
 
-    if(points[0] && points[1]){
+    if(points[0] && points[1] && arcToggle1){
 
       form.stroke("#17BEBB", 60,"round");
 
       form.arc(circle, points[0].angle(space.size.$divide(2)), points[1].angle(space.size.$divide(2)) );
 }
-    if(points[2] && points[3]){
+    if(points[2] && points[3] && arcToggle2){
     form.stroke("#B0DB43", 60,"round");
     form.arc(circle2, points[2].angle(space.size.$divide(2)), points[3].angle(space.size.$divide(2)) );
     }
-    if(points[4] && points[5]){
+    if(points[4] && points[5] && arcToggle3){
 
     form.stroke("#D62246", 60,"round");
     form.arc(circle3, points[4].angle(space.size.$divide(2)), points[5].angle(space.size.$divide(2)) );

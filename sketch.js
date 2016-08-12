@@ -82,14 +82,42 @@ nx.onload = function() {
 
   nx.colorize("border", "#999999");
   nx.colorize("accent", "#999999");
-  nx.labelColor = "white";
+  //nx.labelColor = "white";
 
   nx.colorize("fill", "#000000");
 
   toggle1.colors.accent = "#17BEBB";
+
   toggle2.colors.accent = "#B0DB43";
   toggle3.colors.accent = "#D62246";
 
+  toggle1.on('*', function(data){
+
+    console.log(data.value);
+    if(data.value === 1) {
+      arcToggle1 = true;
+    } else if(data.value === 0){
+      arcToggle1 = false;
+    }
+  })
+  toggle2.on('*', function(data){
+
+    console.log(data.value);
+    if(data.value === 1) {
+      arcToggle2 = true;
+    } else if(data.value === 0){
+      arcToggle2 = false;
+    }
+  })
+  toggle3.on('*', function(data){
+
+    console.log(data.value);
+    if(data.value === 1) {
+      arcToggle3 = true;
+    } else if(data.value === 0){
+      arcToggle3 = false;
+    }
+  })
 
 
 }
@@ -318,6 +346,7 @@ function setup() {
 
 
 
+
     // specify multiple formats for different browsers
     // video = createVideo(['assets/subtractedFootageForWeb.mp4']);
     // vidDisplay = createVideo(['assets/FullWebFootage.mp4']);
@@ -375,7 +404,9 @@ function draw() {
 
             var bright = (r + g + b) / 3;
 
-            if (bright > 200 && rects[index / 4].ring1 === true) {
+
+
+            if (bright > 200 && rects[index / 4].ring1 === true && arcToggle1) {
 
                 sampler.triggerAttack(rects[index / 4].sample);
 
@@ -384,12 +415,12 @@ function draw() {
 
 
             }
-            if (bright > 200 && rects[index / 4].ring2 === true) {
+            if (bright > 200 && rects[index / 4].ring2 === true && arcToggle2) {
 
                 sampler2.triggerAttack(rects[index / 4].sample);
 
             }
-            if (bright > 200 && rects[index / 4].ring3 === true) {
+            if (bright > 200 && rects[index / 4].ring3 === true && arcToggle3) {
 
                 sampler3.triggerAttack(rects[index / 4].sample);
 

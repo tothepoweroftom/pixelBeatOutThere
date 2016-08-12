@@ -25,8 +25,8 @@ var mouse2 = new Circle( space.size.$divide(2) ).setRadius( 305 );
 var mouse3 = new Circle( space.size.$divide(2) ).setRadius( 290 );
 
 var circle = new Circle( space.size.$divide(2) ).setRadius( 200 );
-var circle2 = new Circle( space.size.$divide(2) ).setRadius( 275 );
-var circle3 = new Circle( space.size.$divide(2) ).setRadius( 350 );
+var circle2 = new Circle( space.size.$divide(2) ).setRadius( 250 );
+var circle3 = new Circle( space.size.$divide(2) ).setRadius( 300 );
 
 
 var origin = new Point(space.size.$divide(2) );
@@ -45,22 +45,22 @@ space.add({
     form.text( new Point(20, space.size.y/8), "Music From The Atom" );
     form.text( new Point(20, space.size.y/8 + 30), "by Wild Surmise" );
 
-    // draw circle and donut. Donut follows mouse position.
-    form.fill( "rgba(0,0,0,.51)" );
-    form.circle( mouse, mouse.radius, true );
-    form.fill( "rgba(0,0,0,.51)" );
-    form.circle( mouse2, mouse2.radius, true );
-    form.fill( "rgba(0,0,0,.51)" );
-    form.circle( mouse2, mouse3.radius, true );
+    // // draw circle and donut. Donut follows mouse position.
+    // form.fill( "rgba(0,0,0,.51)" );
+    // form.circle( mouse, mouse.radius, true );
+    // form.fill( "rgba(0,0,0,.51)" );
+    // form.circle( mouse2, mouse2.radius, true );
+    // form.fill( "rgba(0,0,0,.51)" );
+    // form.circle( mouse2, mouse3.radius, true );
 
 
-    //
-    form.fill( "rgba(0,0,0,0.39)" );
-    form.circle( circle, circle.radius, true );
-    form.fill( "rgba(0,,0,0.19)" );
-    form.circle( circle2, circle2.radius, true );
-        form.fill( "rgba(0,2,5,0.19)" );
-    form.circle( circle3, circle2.radius, true );
+    // //
+    // form.fill( "rgba(0,0,0,0.39)" );
+    // form.circle( circle, circle.radius, true );
+    // form.fill( "rgba(0,,0,0.19)" );
+    // form.circle( circle2, circle2.radius, true );
+    //     form.fill( "rgba(0,2,5,0.19)" );
+    // form.circle( circle3, circle2.radius, true );
 
 
     // Check intersections and draw the intersection points
@@ -77,17 +77,17 @@ space.add({
 
     if(points[0] && points[1]){
 
-      form.stroke("#17BEBB", 80,"round");
+      form.stroke("#17BEBB", 60,"round");
 
       form.arc(circle, points[0].angle(space.size.$divide(2)), points[1].angle(space.size.$divide(2)) );
 }
     if(points[2] && points[3]){
-    form.stroke("#B0DB43", 80,"round");
+    form.stroke("#B0DB43", 60,"round");
     form.arc(circle2, points[2].angle(space.size.$divide(2)), points[3].angle(space.size.$divide(2)) );
     }
     if(points[4] && points[5]){
 
-    form.stroke("#D62246", 80,"round");
+    form.stroke("#D62246", 60,"round");
     form.arc(circle3, points[4].angle(space.size.$divide(2)), points[5].angle(space.size.$divide(2)) );
   }
     form.stroke("rgba(0,0,0,.5)", 0.1,"bevel");

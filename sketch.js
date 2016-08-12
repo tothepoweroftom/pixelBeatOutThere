@@ -78,6 +78,22 @@ function Rectangle(_x, _y, _width, _height, _sample, _note) {
 
 }
 
+nx.onload = function() {
+
+  nx.colorize("border", "#999999");
+  nx.colorize("accent", "#999999");
+  nx.labelColor = "white";
+
+  nx.colorize("fill", "#000000");
+
+  toggle1.colors.accent = "#17BEBB";
+  toggle2.colors.accent = "#B0DB43";
+  toggle3.colors.accent = "#D62246";
+
+
+
+}
+
 
 
 //TONE.JS EFFECTS
@@ -296,6 +312,9 @@ function setup() {
     canvas.position(windowWidth / 2 - canvas.width / 2, 0);
 
     buttonVid = createButton("Play");
+
+    var toggle = document.getElementById('nexusControls');
+    toggle.style.display = 'block';
 
 
 

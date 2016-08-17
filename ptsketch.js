@@ -24,7 +24,7 @@ var form = new Form( space );
 spaceSize = space.size.$divide(2);
 
 //// 2. Create Elements
-var mouse = new Circle( space.size.$divide(2) ).setRadius(  300 );
+var mouse = new Circle( space.size.$divide(2) ).setRadius(  400 );
 var mouse2 = new Circle( space.size.$divide(2) ).setRadius( 205 );
 var mouse3 = new Circle( space.size.$divide(2) ).setRadius( 190 );
 

@@ -43,9 +43,9 @@ var notes = ["A.1", "A.2", "A.3", "A.4", "A.5", "A.6",
 ];
 
 
-var synthNotes = ["Bb2", "Db3", "Eb3", "Gb3", "Ab3", "Bb3", "Db4", "Eb4", "Gb4", "Ab4", "Bb4", "Db5", "Eb5", "Gb5", "Ab5", "Bb5"];
+//var synthNotes = ["Bb2", "Db3", "Eb3", "Gb3", "Ab3", "Bb3", "Db4", "Eb4", "Gb4", "Ab4", "Bb4", "Db5", "Eb5", "Gb5", "Ab5", "Bb5"];
 
-function Rectangle(_x, _y, _width, _height, _sample, _note) {
+function Rectangle(_x, _y, _width, _height, _sample) {
     this.x = _x;
     this.y = _y;
     this.theta = (atan2((_y - 4 * _height), (_x - 6 * _width)) * (180 / PI)) + 180;
@@ -56,7 +56,7 @@ function Rectangle(_x, _y, _width, _height, _sample, _note) {
     this.width = _width;
     this.height = _height;
     this.sample = _sample;
-    this.note = _note;
+    // this.note = _note;
     this.counter = 10;
     this.display = function() {
         noFill();
@@ -282,23 +282,23 @@ function preload() {
 
         },
         C: {
-            1: "./audio/guitar1/guitar1.wav",
-            2: "./audio/guitar1/guitar2.wav",
-            3: "./audio/guitar1/guitar3.wav",
-            4: "./audio/guitar1/guitar4.wav",
-            5: "./audio/guitar1/guitar5.wav",
-            6: "./audio/guitar1/guitar6.wav",
+            1: "./audio/Bass/bass1.wav",
+            2: "./audio/Bass/bass2.wav",
+            3: "./audio/Bass/bass3.wav",
+            4: "./audio/Bass/bass4.wav",
+            5: "./audio/Bass/bass5.wav",
+            6: "./audio/Bass/bass6.wav",
 
 
 
         },
         D: {
-            1: "./audio/guitar2/guitar1.wav",
-            2: "./audio/guitar2/guitar2.wav",
-            3: "./audio/guitar2/guitar3.wav",
-            4: "./audio/guitar2/guitar4.wav",
-            5: "./audio/guitar2/guitar5.wav",
-            6: "./audio/guitar2/guitar6.wav",
+            1: "./audio/Strat/strat1.wav",
+            2: "./audio/Strat/strat2.wav",
+            3: "./audio/Strat/strat3.wav",
+            4: "./audio/Strat/strat4.wav",
+            5: "./audio/Strat/strat5.wav",
+            6: "./audio/Strat/strat6.wav",
 
 
 
@@ -317,8 +317,8 @@ function preload() {
     }).connect(pingPong);
 
     //TURN DOWN THE VOLUME
-    sampler.volume.value = -10;
-    sampler2.volume.value = -15;
+    sampler.volume.value = -7;
+    sampler2.volume.value = -10;
     sampler3.volume.value = -10;
 
     sampler.envelope.attack = 0.8;
@@ -374,7 +374,7 @@ function setup() {
         for (var x = 0; x < video.width; x++) {
             var index = (x + (y * video.width));
             //console.log(index);
-            rects[index] = new Rectangle(x * vscale, y * vscale, vscale, vscale, notes[index % 25], synthNotes[index % 16]);
+            rects[index] = new Rectangle(x * vscale, y * vscale, vscale, vscale, notes[index % 25]);
             //rects[index].display();
             //print("Theta = " + rects[index].theta);
         }

@@ -9,6 +9,7 @@ var arcToggle1 = false;
 var arcToggle2 = false;
 var arcToggle3 = true;
 
+
 //var ringTrigger = false;
 
 
@@ -48,6 +49,12 @@ space.add({
     form.font( scaleFont, fonts[1]);
     form.text( new Point(20, space.size.y/8), "Music From The Atom" );
     form.text( new Point(20, space.size.y/8 + 30), "by Wild Surmise" );
+
+    // if(help){
+    //   form.text( new Point(space.size.x -space.size.x/6 , space.size.y/8), "This Is Help" );
+    //   form.text( new Point(space.size.x - space.size.x/6, space.size.y/8 + 30), "by Wild Surmise" );
+    //
+    // }
 
     // // draw circle and donut. Donut follows mouse position.
     // form.fill( "rgba(0,0,0,.51)" );

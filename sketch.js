@@ -21,6 +21,7 @@ var sampler3;
 
 //UI ---------------------
 
+var toggle;
 //CircularSlider
 var slider;
 var buttonVid;
@@ -88,8 +89,11 @@ nx.onload = function() {
 
   toggle1.colors.accent = "#17BEBB";
 
+
   toggle2.colors.accent = "#B0DB43";
   toggle3.colors.accent = "#D62246";
+  toggle3.val.value = 1;
+  toggle3.draw();
 
   toggle1.on('*', function(data){
 
@@ -126,7 +130,7 @@ nx.onload = function() {
 
 //TONE.JS EFFECTS
 var pingPong = new Tone.PingPongDelay("2n", 0.3).toMaster();
-pingPong.wet.value = 0.4;
+pingPong.wet.value = 0.2;
 
 
 
@@ -338,8 +342,6 @@ function preload() {
 function setup() {
     canvas = createCanvas(480, 320);
     canvas.position(windowWidth / 2 - canvas.width / 2, 0);
-
-    buttonVid = createButton("Play");
 
     var toggle = document.getElementById('nexusControls');
     toggle.style.display = 'block';
@@ -560,9 +562,4 @@ function updateAngles() {
               }
 
           }
-
-
-
-
-
 }

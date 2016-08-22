@@ -63,7 +63,7 @@ space.add({
         form.fill( '#fff' );
         form.font( scaleFont-5, fonts[ 3 ]);
         form.text( new Point(x, y), "This is an interactive web audio composition!" );
-        form.text( new Point(x, y+spaceY), "The cloud chamber footage shows alpha" );
+        form.text( new Point(x, y+spaceY), "The cloud chamber footage visualizes alpha" );
         form.text( new Point(x, y+2*spaceY), "radiation from fiestaware pottery fragments." );
         form.text( new Point(x, y+3*spaceY), "These particles are tracked in the browser" );
         form.text( new Point(x, y+4*spaceY), "and trigger precomposed samples of music." );

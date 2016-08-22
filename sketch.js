@@ -130,7 +130,7 @@ nx.onload = function() {
 
 //TONE.JS EFFECTS
 var pingPong = new Tone.PingPongDelay("2n", 0.3).toMaster();
-pingPong.wet.value = 0.2;
+pingPong.wet.value = 0.15;
 
 
 
@@ -248,7 +248,7 @@ function preload() {
 
 
     // sampler.reverse = true;
-    sampler2.reverse = true;
+    sampler2.reverse = false;
 
     // GUITAR SAMPLER
     sampler3 = new Tone.Sampler({
@@ -321,8 +321,8 @@ function preload() {
     }).connect(pingPong);
 
     //TURN DOWN THE VOLUME
-    sampler.volume.value = -7;
-    sampler2.volume.value = -10;
+    sampler.volume.value = -4;
+    sampler2.volume.value = -12;
     sampler3.volume.value = -10;
 
     sampler.envelope.attack = 0.8;
@@ -352,8 +352,8 @@ function setup() {
     // specify multiple formats for different browsers
     // video = createVideo(['assets/subtractedFootageForWeb.mp4']);
     // vidDisplay = createVideo(['assets/FullWebFootage.mp4']);
-    video = createVideo(['assets/cloud25forweb.mp4']);
-    vidDisplay = createVideo(['assets/cloud25.mp4']);
+    video = createVideo(['assets/subtractedFootageForWeb.mp4']);
+    vidDisplay = createVideo(['assets/FullWebFootage.mp4']);
     var elt = document.getElementById('loader-wrapper');
     elt.style.display = 'none';
     vidDisplay.id("vidDisplay");
@@ -370,13 +370,13 @@ function setup() {
     pixelDensity(1);
     noStroke();
     fill(0);
-    frameRate(2);
+    frameRate(1);
 
     for (var y = 0; y < video.height; y++) {
         for (var x = 0; x < video.width; x++) {
             var index = (x + (y * video.width));
             //console.log(index);
-            rects[index] = new Rectangle(x * vscale, y * vscale, vscale, vscale, notes[index % 25]);
+            rects[index] = new Rectangle(x * vscale, y * vscale, vscale, vscale, notes[index % 23]);
             //rects[index].display();
             //print("Theta = " + rects[index].theta);
         }
@@ -411,7 +411,7 @@ function draw() {
             if (bright > 200 && rects[index / 4].ring1 === true && arcToggle1) {
 
                 sampler.triggerAttack(rects[index / 4].sample);
-
+                arcBlink(circle, points[0].angle(space.size.$divide(2)), points[1].angle(space.size.$divide(2)) );
 
 
 
@@ -420,18 +420,22 @@ function draw() {
             if (bright > 200 && rects[index / 4].ring2 === true && arcToggle2) {
 
                 sampler2.triggerAttack(rects[index / 4].sample);
+                arcBlink(circle2, points[2].angle(space.size.$divide(2)), points[3].angle(space.size.$divide(2)) );
+
 
             }
             if (bright > 200 && rects[index / 4].ring3 === true && arcToggle3) {
 
                 sampler3.triggerAttack(rects[index / 4].sample);
+                arcBlink(circle3, points[4].angle(space.size.$divide(2)), points[5].angle(space.size.$divide(2)) );
+
 
             }
             if (bright > 150) {
-              space.add( new Dust(x*(windowWidth/video.width) + rand(10), 100+y*(windowHeight/video.height)+rand(10) ) );
-              space.add( new Dust(x*(windowWidth/video.width) + rand(100), 50+y*(windowHeight/video.height)+rand(10) ) );
-              space.add( new Dust(x*(windowWidth/video.width) + rand(50), 100+y*(windowHeight/video.height)+rand(10) ) );
-              space.add( new Dust(x*(windowWidth/video.width) + rand(40), 10+y*(windowHeight/video.height)+rand(10) ) );
+              // space.add( new Dust(x*(windowWidth/video.width) + rand(10), 100+y*(windowHeight/video.height)+rand(10) ) );
+              // space.add( new Dust(x*(windowWidth/video.width) + rand(100), 50+y*(windowHeight/video.height)+rand(10) ) );
+              // space.add( new Dust(x*(windowWidth/video.width) + rand(50), 100+y*(windowHeight/video.height)+rand(10) ) );
+              // space.add( new Dust(x*(windowWidth/video.width) + rand(40), 10+y*(windowHeight/video.height)+rand(10) ) );
             }
 
 

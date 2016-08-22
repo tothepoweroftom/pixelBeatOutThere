@@ -1,4 +1,4 @@
-
+//Glow color #F2DD6E
 //GLOBAL VARIABLES
 //0,1 Ring 1 - 2,3 Ring 2 - 4,5 Ring 3
 var points = [];
@@ -19,15 +19,19 @@ var colors = {
   a1: "#ff2d5d", a2: "#42dc8e", a3: "#2e43eb", a4: "#000000",
   b1: "#96bfed", b2: "#f5ead6", b3: "#f1f3f7", b4: "#e2e6ef"
 };
+
+var arcColors = {
+  a1: '#17BEBB', a2: '#B0DB43', a3: '#D62246'
+};
 //var space = new CanvasSpace("pt").setup( {bgcolor: colors.a4} );
 var form = new Form( space );
 
 spaceSize = space.size.$divide(2);
 
 //// 2. Create Elements
-var mouse = new Circle( space.size.$divide(2) ).setRadius(  400 );
-var mouse2 = new Circle( space.size.$divide(2) ).setRadius( 205 );
-var mouse3 = new Circle( space.size.$divide(2) ).setRadius( 190 );
+var mouse = new Circle( space.size.$divide(2) ).setRadius(  250 );
+var mouse2 = new Circle( space.size.$divide(2) ).setRadius( 250 );
+var mouse3 = new Circle( space.size.$divide(2) ).setRadius( 250 );
 
 var circle = new Circle( space.size.$divide(2) ).setRadius( 200 );
 var circle2 = new Circle( space.size.$divide(2) ).setRadius( 250 );
@@ -35,6 +39,10 @@ var circle3 = new Circle( space.size.$divide(2) ).setRadius( 300 );
 
 
 var origin = new Point(space.size.$divide(2) );
+
+var arc1 = new Arc(arcColors.a1);
+var arc2 = new Arc(arcColors.a2);
+var arc3 = new Arc(arcColors.a3);
 
 
 form.stroke( false );
@@ -76,8 +84,8 @@ space.add({
 
     // Check intersections and draw the intersection points
     var ps = circle.intersectCircle( mouse );
-    var ps2 = circle2.intersectCircle( mouse );
-    var ps3 = circle3.intersectCircle( mouse );
+    var ps2 = circle2.intersectCircle( mouse2 );
+    var ps3 = circle3.intersectCircle( mouse3 );
 
     points[0] = ps[0];
     points[1] = ps[1];
@@ -101,16 +109,14 @@ space.add({
     form.stroke("#D62246", 60,"round");
     form.arc(circle3, points[4].angle(space.size.$divide(2)), points[5].angle(space.size.$divide(2)) );
   }
-    form.stroke("rgba(0,0,0,.5)", 0.1,"bevel");
 
-   form.fill( colors.a1 );
 
    },
   onMouseAction: function(type, x, y, evt) {
     if (type=="move") {
       mouse.set(x,y);
-      mouse2.set(x,y);
-      mouse3.set(x,y);
+      mouse2.set(x+10,y+10);
+      mouse3.set(x+20,y-20);
 
 
 
@@ -118,6 +124,31 @@ space.add({
     }
   }
 });
+
+
+function arcBlink(_circle, _angle1, _angle2){
+
+      form.stroke("#F2DD6E", 80, "round");
+      form.arc(_circle, _angle1, _angle2);
+      //console.log(age);
+
+}
+
+function Arc(_color){
+  this.age = 60;
+  this.color = _color;
+
+  Arc.prototype.display = function (_circle, _angle1, _angle2) {
+    form.stroke(this.color, this.age, "round");
+    form.arc(_circle, _angle1, _angle2);
+
+  }
+
+  Arc.prototype.animate = function(time, fps, context) {
+    form.stroke(this.color, this.age, "round");
+    form.arc(_circle, _angle1, _angle2);
+  }
+}
 
 
 // A Dust is a kind of Vector
@@ -164,6 +195,8 @@ function rand(r) { return Math.random() * r - Math.random() * r; }
 //   space.add( new Dust( evt.offsetX+rand(5), evt.offsetY+rand(5) ) );
 //
 // });
+
+
 
 
 

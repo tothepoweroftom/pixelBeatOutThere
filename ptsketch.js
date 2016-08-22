@@ -5,6 +5,8 @@ var points = [];
 var spaceSize;
 var space = new CanvasSpace("pt").setup( {bgcolor: "#000000"} );
 
+var helpToggle = true;
+
 var arcToggle1 = false;
 var arcToggle2 = false;
 var arcToggle3 = true;
@@ -53,11 +55,31 @@ var scaleFont = 20;
 space.add({
   animate: function(time, fps, context) {
 
-    form.fill( "#eeeeee" );
-    form.font( scaleFont, fonts[1]);
-    form.text( new Point(20, space.size.y/8), "Music From The Atom" );
-    form.text( new Point(20, space.size.y/8 + 30), "by Wild Surmise" );
+//TOGGLE HELP TEXT
+    if(helpToggle===true){
+        var x = space.size.x -space.size.x/4;
+        var y = space.size.y/4;
+        var spaceY = 20;
+        form.fill( '#fff' );
+        form.font( scaleFont-5, fonts[ 3 ]);
+        form.text( new Point(x, y), "This is an interactive web audio composition!" );
+        form.text( new Point(x, y+spaceY), "The cloud chamber footage shows alpha" );
+        form.text( new Point(x, y+2*spaceY), "radiation from fiestaware pottery fragments." );
+        form.text( new Point(x, y+3*spaceY), "These particles are tracked in the browser" );
+        form.text( new Point(x, y+4*spaceY), "and trigger precomposed samples of music." );
+        form.fill( '#B0DB43' );
+        form.text( new Point(x, y+6*spaceY), "Instructions: " );
+        form.fill( '#fff' );
+        form.text( new Point(x, y + 7*spaceY), "Use the mouse to control the position of  " );
+        form.text( new Point(x, y + 8*spaceY), "the instrument particle detectors.  " );
+        form.text( new Point(x, y + 10*spaceY), "When a particle is detected in this region " );
+        form.text( new Point(x, y + 11*spaceY), "the detector will flash and music is generated. " );
+        form.text( new Point(x, y + 13*spaceY), "Three toggle switches on the right control " );
+        form.text( new Point(x, y + 14*spaceY), "3 groups of instruments to mix and match.  " );
+        form.text( new Point(x, y + 16*spaceY), "Click on help to close this text! " );
+        //form.text( new Point(x, y + 17*spaceY), "the 3 groups of instruments  " );
 
+    }
     // if(help){
     //   form.text( new Point(space.size.x -space.size.x/6 , space.size.y/8), "This Is Help" );
     //   form.text( new Point(space.size.x - space.size.x/6, space.size.y/8 + 30), "by Wild Surmise" );
